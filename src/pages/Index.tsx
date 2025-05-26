@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TopNavigation from '@/components/TopNavigation';
 import InitialLogin from '@/components/InitialLogin';
 import LocalSignIn from '@/components/LocalSignIn';
@@ -9,8 +10,14 @@ import ResetPasswordNewPassword from '@/components/ResetPasswordNewPassword';
 const Index = () => {
   const [currentScreen, setCurrentScreen] = useState('initial');
   const [userEmail, setUserEmail] = useState('');
+  const navigate = useNavigate();
 
   const handleScreenChange = (screen: string, email?: string) => {
+    if (screen === 'dashboard') {
+      navigate('/dashboard');
+      return;
+    }
+    
     setCurrentScreen(screen);
     if (email) {
       setUserEmail(email);
