@@ -1,8 +1,10 @@
 
 import { Search, File, Bell, User, MoreVertical } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TopNavigation = () => {
+  const navigate = useNavigate();
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({
     admin: true // Admin starts expanded as indicated by inverted caret
   });
@@ -17,9 +19,12 @@ const TopNavigation = () => {
   return (
     <nav className="w-full h-14 bg-neutral-900 flex items-center justify-between px-6">
       <div className="flex items-center space-x-6">
-        <h1 className="text-base text-neutral-100 font-medium">
+        <button 
+          onClick={() => navigate('/')}
+          className="text-base text-neutral-100 font-medium hover:text-neutral-300 transition-colors"
+        >
           Open Development
-        </h1>
+        </button>
         <div className="text-neutral-400">|</div>
         
         <div className="flex items-center space-x-4">
@@ -32,12 +37,22 @@ const TopNavigation = () => {
             </span>
             Admin
           </button>
-          <button className="text-neutral-100 hover:text-neutral-300 transition-colors">Assets</button>
+          <button 
+            onClick={() => navigate('/dashboard')}
+            className="text-neutral-100 hover:text-neutral-300 transition-colors"
+          >
+            Assets
+          </button>
           <button className="text-neutral-100 hover:text-neutral-300 transition-colors">Projects</button>
           <button className="text-neutral-100 hover:text-neutral-300 transition-colors">Education</button>
           <button className="text-neutral-100 hover:text-neutral-300 transition-colors">Events</button>
           <button className="text-neutral-100 hover:text-neutral-300 transition-colors">Publications</button>
-          <button className="text-neutral-100 hover:text-neutral-300 transition-colors">Network</button>
+          <button 
+            onClick={() => navigate('/faq')}
+            className="text-neutral-100 hover:text-neutral-300 transition-colors"
+          >
+            Network
+          </button>
         </div>
       </div>
       
