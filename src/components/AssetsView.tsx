@@ -1,10 +1,18 @@
 
 import { useState } from 'react';
-import { Search, Grid, List } from 'lucide-react';
+import { Search, Grid, List, FileText } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Toggle } from "@/components/ui/toggle";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface Asset {
   id: number;
@@ -12,6 +20,7 @@ interface Asset {
   description: string;
   category: string;
   categoryMain: string;
+  domain: string;
   icon: string;
 }
 
@@ -22,6 +31,7 @@ const assetsData: Asset[] = [
     description: "Automated telescopic follow-up of transient astronomical events",
     category: "Research | Astronomy",
     categoryMain: "Research",
+    domain: "Astronomy",
     icon: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=64&h=64&fit=crop&crop=center"
   },
   {
@@ -30,6 +40,7 @@ const assetsData: Asset[] = [
     description: "Genomics platform for doing research in rare disease diagnosis and prevention.",
     category: "Research | Healthcare",
     categoryMain: "Research",
+    domain: "Healthcare",
     icon: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=64&h=64&fit=crop&crop=center"
   },
   {
@@ -38,6 +49,7 @@ const assetsData: Asset[] = [
     description: "Optimization algorithms and models for autonomous cars in a racing scenario.",
     category: "Research | Automotive",
     categoryMain: "Research",
+    domain: "Automotive",
     icon: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=64&h=64&fit=crop&crop=center"
   },
   {
@@ -46,7 +58,17 @@ const assetsData: Asset[] = [
     description: "Analyzing sports biomechanics with AI to provide expert coaching guidance.",
     category: "Research | Sports",
     categoryMain: "Research",
+    domain: "Sports",
     icon: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=64&h=64&fit=crop&crop=center"
+  },
+  {
+    id: 5,
+    title: "Cognitive Telescope Network",
+    description: "Automated telescopic follow-up of transient astronomical events",
+    category: "Research | Astronomy",
+    categoryMain: "Research",
+    domain: "Astronomy",
+    icon: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=64&h=64&fit=crop&crop=center"
   }
 ];
 
@@ -57,7 +79,8 @@ export function AssetsView() {
   const filteredAssets = assetsData.filter(asset =>
     asset.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     asset.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    asset.category.toLowerCase().includes(searchTerm.toLowerCase())
+    asset.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    asset.domain.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -148,8 +171,38 @@ export function AssetsView() {
               ))}
             </div>
           ) : (
-            <div className="text-neutral-600">
-              Table view - Implementation coming soon
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-neutral-800 hover:bg-neutral-800">
+                    <TableHead className="text-neutral-100 font-medium">Type</TableHead>
+                    <TableHead className="text-neutral-100 font-medium">Asset</TableHead>
+                    <TableHead className="text-neutral-100 font-medium">Description</TableHead>
+                    <TableHead className="text-neutral-100 font-medium">Domain</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredAssets.map((asset) => (
+                    <TableRow key={asset.id} className="hover:bg-neutral-200 border-neutral-800">
+                      <TableCell className="text-neutral-800">
+                        <div className="flex items-center space-x-2">
+                          <FileText className="w-4 h-4 p-0.5" />
+                          <span>{asset.categoryMain}</span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-neutral-800 font-medium">
+                        {asset.title}
+                      </TableCell>
+                      <TableCell className="text-neutral-800">
+                        {asset.description}
+                      </TableCell>
+                      <TableCell className="text-neutral-800">
+                        {asset.domain}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
           )}
 
