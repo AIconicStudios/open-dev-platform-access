@@ -1,24 +1,26 @@
 
-import { User } from 'lucide-react';
 import { SidebarInset } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
 
 export function DashboardContent() {
   return (
     <SidebarInset className="flex-1 flex flex-col">
-      {/* Top bar with profile icon */}
-      <div className="flex justify-end p-6 border-b border-neutral-200">
-        <User className="w-6 h-6 text-neutral-600 hover:text-neutral-900 cursor-pointer" />
+      {/* Main content header */}
+      <div className="flex justify-between items-center p-6 border-b border-neutral-200">
+        <h1 className="text-3xl font-bold text-neutral-900">
+          Open Assets
+        </h1>
+        <Button className="bg-sky-600 hover:bg-sky-700 text-sky-200">
+          Join the team
+        </Button>
       </div>
       
-      {/* Main content area */}
+      {/* Workspace area */}
       <div className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-2xl font-semibold text-neutral-900 mb-6">
-            Dashboard
-          </h1>
-          <div className="bg-white rounded-lg border border-neutral-200 p-6">
+          <div className="bg-white rounded-lg border border-neutral-200 p-6 h-full">
             <p className="text-neutral-600">
-              Welcome to the Open Development Platform. Select an option from the sidebar to get started.
+              Workspace area - This is where card/table views will be implemented.
             </p>
           </div>
         </div>

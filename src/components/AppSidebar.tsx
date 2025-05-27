@@ -5,6 +5,7 @@ import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
+  SidebarFooter,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -14,7 +15,6 @@ import {
 } from "@/components/ui/sidebar";
 
 const menuItems = [
-  { title: "Admin", hasSubmenu: false },
   { 
     title: "Assets", 
     hasSubmenu: true,
@@ -28,20 +28,19 @@ const menuItems = [
           "Healthcare",
           "Manufacturing",
           "Security",
-          "Sports",
-          "Technology"
+          "Sports"
         ]
       },
       { title: "Education", hasSubmenu: false },
-      { title: "Community", hasSubmenu: false },
-      { title: "Legal", hasSubmenu: false }
+      { title: "Technology", hasSubmenu: false }
     ]
   },
-  { title: "Projects", hasSubmenu: false },
-  { title: "Education", hasSubmenu: false },
-  { title: "Events", hasSubmenu: false },
-  { title: "Publications", hasSubmenu: false },
-  { title: "Network", hasSubmenu: false },
+  { title: "Education", hasSubmenu: false }
+];
+
+const bottomMenuItems = [
+  { title: "Community", hasSubmenu: false },
+  { title: "Legal", hasSubmenu: false }
 ];
 
 export function AppSidebar() {
@@ -57,12 +56,12 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r border-neutral-700" style={{ width: '280px' }}>
       <SidebarHeader className="p-6 border-b border-neutral-700">
-        <h1 className="text-base text-neutral-100 font-medium">
-          Open Development Platform
-        </h1>
+        <h2 className="text-lg text-neutral-100 font-medium">
+          Open Assets
+        </h2>
       </SidebarHeader>
       
-      <SidebarContent className="bg-neutral-800">
+      <SidebarContent className="bg-neutral-800 flex flex-col justify-between">
         <SidebarMenu className="p-4 space-y-1">
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.title}>
@@ -120,6 +119,18 @@ export function AppSidebar() {
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
+
+        <SidebarFooter className="p-4">
+          <SidebarMenu className="space-y-1">
+            {bottomMenuItems.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton className="w-full text-neutral-100 hover:bg-neutral-700 hover:text-neutral-100">
+                  <span className="text-base">{item.title}</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarFooter>
       </SidebarContent>
     </Sidebar>
   );
