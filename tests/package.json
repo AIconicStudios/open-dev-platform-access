@@ -1,0 +1,13 @@
+{
+  "name": "fullstack-evaluation-suite",
+  "version": "1.0.0",
+  "description": "Comprehensive automated testing suite for UI/API/Database evaluation",
+  "main": "evaluation-suite.js",
+  "scripts": {
+    "evaluate": "node evaluation-suite.js",
+    "test": "node evaluation-suite.js"
+  },
+  "keywords": ["testing", "evaluation", "fullstack", "automation"],
+  "author": "AI Assistant",
+  "license": "MIT"
+}
